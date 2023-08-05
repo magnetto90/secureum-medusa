@@ -15,16 +15,16 @@ contract FixedPointMathLibTest is PropertiesAsserts {
     // The following is an example of invariant
     // It test that if z = x / y, then z <= x
     // For any x and y greater than 1 unit
-    function testmulDivDown(uint256 x, uint256 y) public {
+    function testDivWadDown(uint256 x, uint256 y) public {
         // We work with a decimals of 18
         uint256 decimals = 1e18;
 
-        // Ensure x and y are geater than 1
+        // Ensure x and y are greater  than 1
         x = clampGte(x, decimals);
         y = clampGte(y, decimals);
 
         // compute z = x / y
-        uint256 z = x.mulDivDown(y, decimals);
+        uint256 z = FixedPointMathLib.divWadDown(x, y);
 
         // Ensure that z <= x
         assertLte(z, x, "Z should be less or equal to X");
