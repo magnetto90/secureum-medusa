@@ -123,7 +123,7 @@
         <hr />
         <table>
             <tr><th>Files: </th><td>3</td></tr>
-            <tr><th>Lines: </th><td>761</td></tr>
+            <tr><th>Lines: </th><td>768</td></tr>
             <tr>
                 <th>Covered: </th>
                 <td>
@@ -134,8 +134,8 @@
 
                     
                     
-                    206 / 223 (92.4%)
-                    <progress class="progress-coverage" value="92" max="100" style="accent-color: hsl(92, 100%, 60%)"></progress>
+                    203 / 225 (90.2%)
+                    <progress class="progress-coverage" value="90" max="100" style="accent-color: hsl(90, 100%, 60%)"></progress>
                 </td>
             </tr>
         </table>
@@ -5912,7 +5912,7 @@
             <table>
                 <tr>
                     <th>Lines covered: </th>
-                    <td>48 / 48 (100.0%)</td>
+                    <td>50 / 50 (100.0%)</td>
                 </tr>
             </table>
             <hr />
@@ -7253,12 +7253,8 @@
                         
                         <td class="row-reverted-status unselectable">
                             
-                                <div title="The source line executed without reverting.">√</div>
-                            
                         </td>
                         <td class="row-reverted-status unselectable">
-                            
-                                <div title="The source line executed, but was reverted.">⟳</div>
                             
                         </td>
 
@@ -7267,7 +7263,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">        int256 mul_one = x.wadMul(x) &#43; x.wadMul(y);</pre>
+                                    <pre>        //Known issue:</pre>
                             
                         </td>
                     </tr>
@@ -7280,12 +7276,8 @@
                         
                         <td class="row-reverted-status unselectable">
                             
-                                <div title="The source line executed without reverting.">√</div>
-                            
                         </td>
                         <td class="row-reverted-status unselectable">
-                            
-                                <div title="The source line executed, but was reverted.">⟳</div>
                             
                         </td>
 
@@ -7294,7 +7286,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">        int256 mul_two = x.wadMul(x &#43; y);</pre>
+                                    <pre>        // x = -1 &amp;&amp; y = -57896044618658097711785492504343953926634992332820282019728792003956564819967</pre>
                             
                         </td>
                     </tr>
@@ -7317,7 +7309,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre></pre>
+                                    <pre>        // So...</pre>
                             
                         </td>
                     </tr>
@@ -7330,8 +7322,12 @@
                         
                         <td class="row-reverted-status unselectable">
                             
+                                <div title="The source line executed without reverting.">√</div>
+                            
                         </td>
                         <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed, but was reverted.">⟳</div>
                             
                         </td>
 
@@ -7340,7 +7336,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>        //Deal with precision loss, &#43;/- 1 tolerance.</pre>
+                                    <pre class="row-line-covered">        if (x == -1 &amp;&amp; y == -57896044618658097711785492504343953926634992332820282019728792003956564819967) {</pre>
                             
                         </td>
                     </tr>
@@ -7367,7 +7363,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">        assertLte(abs(mul_one - mul_two), 1, &#34;WadMul should be distributive&#34;);</pre>
+                                    <pre class="row-line-covered">            return;</pre>
                             
                         </td>
                     </tr>
@@ -7390,7 +7386,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre></pre>
+                                    <pre>        }</pre>
                             
                         </td>
                     </tr>
@@ -7413,7 +7409,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>        //Positive number multiplied by negative number is negative or 0</pre>
+                                    <pre>        </pre>
                             
                         </td>
                     </tr>
@@ -7431,6 +7427,8 @@
                         </td>
                         <td class="row-reverted-status unselectable">
                             
+                                <div title="The source line executed, but was reverted.">⟳</div>
+                            
                         </td>
 
                         
@@ -7438,7 +7436,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">        assertLte(x.wadMul(-x), 0, &#34;WadMul should be negative&#34;);</pre>
+                                    <pre class="row-line-covered">        int256 mul_one = x.wadMul(x) &#43; x.wadMul(y);</pre>
                             
                         </td>
                     </tr>
@@ -7451,8 +7449,12 @@
                         
                         <td class="row-reverted-status unselectable">
                             
+                                <div title="The source line executed without reverting.">√</div>
+                            
                         </td>
                         <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed, but was reverted.">⟳</div>
                             
                         </td>
 
@@ -7461,7 +7463,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>    }</pre>
+                                    <pre class="row-line-covered">        int256 mul_two = x.wadMul(x &#43; y);</pre>
                             
                         </td>
                     </tr>
@@ -7507,7 +7509,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>    function testunsafeWadDiv(int256 x) public {</pre>
+                                    <pre>        //Deal with precision loss, &#43;/- 1 tolerance.</pre>
                             
                         </td>
                     </tr>
@@ -7525,8 +7527,6 @@
                         </td>
                         <td class="row-reverted-status unselectable">
                             
-                                <div title="The source line executed, but was reverted.">⟳</div>
-                            
                         </td>
 
                         
@@ -7534,7 +7534,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">        x = clampBetween(x, 1e18, 100e18);</pre>
+                                    <pre class="row-line-covered">        assertLte(abs(mul_one - mul_two), 1, &#34;WadMul should be distributive&#34;);</pre>
                             
                         </td>
                     </tr>
@@ -7580,7 +7580,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>        // x divided by 1 is x</pre>
+                                    <pre>        //Positive number multiplied by negative number is negative or 0</pre>
                             
                         </td>
                     </tr>
@@ -7605,7 +7605,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">        assertEq(x.unsafeWadDiv(1e18), x, &#34;UnsafeWadDiv should be identity&#34;);</pre>
+                                    <pre class="row-line-covered">        assertLte(x.wadMul(-x), 0, &#34;WadMul should be negative&#34;);</pre>
                             
                         </td>
                     </tr>
@@ -7628,7 +7628,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre></pre>
+                                    <pre>    }</pre>
                             
                         </td>
                     </tr>
@@ -7651,7 +7651,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>        // 0 divided by x is 0</pre>
+                                    <pre></pre>
                             
                         </td>
                     </tr>
@@ -7664,8 +7664,6 @@
                         
                         <td class="row-reverted-status unselectable">
                             
-                                <div title="The source line executed without reverting.">√</div>
-                            
                         </td>
                         <td class="row-reverted-status unselectable">
                             
@@ -7676,7 +7674,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">        assertEq(int256(0).unsafeWadDiv(x), 0, &#34;UnsafeWadDiv should be zero&#34;);</pre>
+                                    <pre>    function testunsafeWadDiv(int256 x) public {</pre>
                             
                         </td>
                     </tr>
@@ -7689,8 +7687,12 @@
                         
                         <td class="row-reverted-status unselectable">
                             
+                                <div title="The source line executed without reverting.">√</div>
+                            
                         </td>
                         <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed, but was reverted.">⟳</div>
                             
                         </td>
 
@@ -7699,7 +7701,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre></pre>
+                                    <pre class="row-line-covered">        x = clampBetween(x, 1e18, 100e18);</pre>
                             
                         </td>
                     </tr>
@@ -7722,7 +7724,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>        // x divided by x is 1</pre>
+                                    <pre></pre>
                             
                         </td>
                     </tr>
@@ -7731,6 +7733,29 @@
                     <tr>
                         
                         <td class="row-line-number unselectable">77</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre>        // x divided by 1 is x</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">78</td>
 
                         
                         <td class="row-reverted-status unselectable">
@@ -7747,30 +7772,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">        assertEq(x.unsafeWadDiv(x), 1e18, &#34;UnsafeWadDiv should be one&#34;);</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">78</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre>    }</pre>
+                                    <pre class="row-line-covered">        assertEq(x.unsafeWadDiv(1e18), x, &#34;UnsafeWadDiv should be identity&#34;);</pre>
                             
                         </td>
                     </tr>
@@ -7816,7 +7818,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>    function testwadDiv(int256 x, int256 y) public {</pre>
+                                    <pre>        // 0 divided by x is 0</pre>
                             
                         </td>
                     </tr>
@@ -7829,6 +7831,8 @@
                         
                         <td class="row-reverted-status unselectable">
                             
+                                <div title="The source line executed without reverting.">√</div>
+                            
                         </td>
                         <td class="row-reverted-status unselectable">
                             
@@ -7839,7 +7843,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>        // x divided by 1 is x</pre>
+                                    <pre class="row-line-covered">        assertEq(int256(0).unsafeWadDiv(x), 0, &#34;UnsafeWadDiv should be zero&#34;);</pre>
                             
                         </td>
                     </tr>
@@ -7848,33 +7852,6 @@
                     <tr>
                         
                         <td class="row-line-number unselectable">82</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                                <div title="The source line executed without reverting.">√</div>
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                                <div title="The source line executed, but was reverted.">⟳</div>
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre class="row-line-covered">        assertEq(x.wadDiv(1e18), x, &#34;wadDiv should be identity&#34;);</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">83</td>
 
                         
                         <td class="row-reverted-status unselectable">
@@ -7897,7 +7874,7 @@
                     
                     <tr>
                         
-                        <td class="row-line-number unselectable">84</td>
+                        <td class="row-line-number unselectable">83</td>
 
                         
                         <td class="row-reverted-status unselectable">
@@ -7912,7 +7889,32 @@
                         
                         <td class="row-source">
                             
-                                    <pre>        // 0 divided by x is 0</pre>
+                                    <pre>        // x divided by x is 1</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">84</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed without reverting.">√</div>
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre class="row-line-covered">        assertEq(x.unsafeWadDiv(x), 1e18, &#34;UnsafeWadDiv should be one&#34;);</pre>
                             
                         </td>
                     </tr>
@@ -7925,12 +7927,8 @@
                         
                         <td class="row-reverted-status unselectable">
                             
-                                <div title="The source line executed without reverting.">√</div>
-                            
                         </td>
                         <td class="row-reverted-status unselectable">
-                            
-                                <div title="The source line executed, but was reverted.">⟳</div>
                             
                         </td>
 
@@ -7939,7 +7937,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">        assertEq(int256(0).wadDiv(x), 0, &#34;wadDiv should be zero&#34;);</pre>
+                                    <pre>    }</pre>
                             
                         </td>
                     </tr>
@@ -7985,7 +7983,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>        // x divided by x is 1</pre>
+                                    <pre>    function testwadDiv(int256 x, int256 y) public {</pre>
                             
                         </td>
                     </tr>
@@ -7994,6 +7992,175 @@
                     <tr>
                         
                         <td class="row-line-number unselectable">88</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre>        // x divided by 1 is x</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">89</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed without reverting.">√</div>
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed, but was reverted.">⟳</div>
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre class="row-line-covered">        assertEq(x.wadDiv(1e18), x, &#34;wadDiv should be identity&#34;);</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">90</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre></pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">91</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre>        // 0 divided by x is 0</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">92</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed without reverting.">√</div>
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed, but was reverted.">⟳</div>
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre class="row-line-covered">        assertEq(int256(0).wadDiv(x), 0, &#34;wadDiv should be zero&#34;);</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">93</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre></pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">94</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre>        // x divided by x is 1</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">95</td>
 
                         
                         <td class="row-reverted-status unselectable">
@@ -8020,184 +8187,13 @@
                     
                     <tr>
                         
-                        <td class="row-line-number unselectable">89</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre></pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">90</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre>        // when y &gt;= 1, x / y &lt;= |x|</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">91</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                                <div title="The source line executed without reverting.">√</div>
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                                <div title="The source line executed, but was reverted.">⟳</div>
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre class="row-line-covered">        y = clampGte(y, 1e18);</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">92</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                                <div title="The source line executed without reverting.">√</div>
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre class="row-line-covered">        assertLte(x.wadDiv(y), abs(x), &#34;wadDiv should be less or equal to the absolut value of x&#34;);</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">93</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre>    }</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">94</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre></pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">95</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre>    function testwadPow(int256 x) public {</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
                         <td class="row-line-number unselectable">96</td>
 
                         
                         <td class="row-reverted-status unselectable">
                             
-                                <div title="The source line executed without reverting.">√</div>
-                            
                         </td>
                         <td class="row-reverted-status unselectable">
-                            
-                                <div title="The source line executed, but was reverted.">⟳</div>
                             
                         </td>
 
@@ -8206,7 +8202,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">        x = clampGte(x, 1e18);</pre>
+                                    <pre></pre>
                             
                         </td>
                     </tr>
@@ -8229,7 +8225,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre></pre>
+                                    <pre>        // when y &gt;= 1, x / y &lt;= |x|</pre>
                             
                         </td>
                     </tr>
@@ -8256,7 +8252,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">        int256 pow = x.wadPow(3e18);</pre>
+                                    <pre class="row-line-covered">        y = clampGte(y, 1e18);</pre>
                             
                         </td>
                     </tr>
@@ -8274,8 +8270,6 @@
                         </td>
                         <td class="row-reverted-status unselectable">
                             
-                                <div title="The source line executed, but was reverted.">⟳</div>
-                            
                         </td>
 
                         
@@ -8283,7 +8277,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">        int256 mul = x.wadMul(x.wadMul(x));</pre>
+                                    <pre class="row-line-covered">        assertLte(x.wadDiv(y), abs(x), &#34;wadDiv should be less or equal to the absolut value of x&#34;);</pre>
                             
                         </td>
                     </tr>
@@ -8306,7 +8300,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre></pre>
+                                    <pre>    }</pre>
                             
                         </td>
                     </tr>
@@ -8329,7 +8323,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>        //verify that the difference between pow and mul is less than 0.00001%</pre>
+                                    <pre></pre>
                             
                         </td>
                     </tr>
@@ -8342,8 +8336,6 @@
                         
                         <td class="row-reverted-status unselectable">
                             
-                                <div title="The source line executed without reverting.">√</div>
-                            
                         </td>
                         <td class="row-reverted-status unselectable">
                             
@@ -8354,7 +8346,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">        assertLte(abs(pow - mul), pow / 1e7, &#34;WadPow should be equal to the sucessive multiplication&#34;);</pre>
+                                    <pre>    function testwadPow(int256 x) public {</pre>
                             
                         </td>
                     </tr>
@@ -8367,8 +8359,12 @@
                         
                         <td class="row-reverted-status unselectable">
                             
+                                <div title="The source line executed without reverting.">√</div>
+                            
                         </td>
                         <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed, but was reverted.">⟳</div>
                             
                         </td>
 
@@ -8377,7 +8373,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre></pre>
+                                    <pre class="row-line-covered">        x = clampGte(x, 1e18);</pre>
                             
                         </td>
                     </tr>
@@ -8400,7 +8396,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>        // verify that x ** 1 = x, tolerance of 0.00001%</pre>
+                                    <pre></pre>
                             
                         </td>
                     </tr>
@@ -8418,6 +8414,8 @@
                         </td>
                         <td class="row-reverted-status unselectable">
                             
+                                <div title="The source line executed, but was reverted.">⟳</div>
+                            
                         </td>
 
                         
@@ -8425,7 +8423,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">        assertLte(x.wadPow(1e18) - x, x / 1e7, &#34;WadPow should be identity&#34;);</pre>
+                                    <pre class="row-line-covered">        int256 pow = x.wadPow(3e18);</pre>
                             
                         </td>
                     </tr>
@@ -8438,8 +8436,12 @@
                         
                         <td class="row-reverted-status unselectable">
                             
+                                <div title="The source line executed without reverting.">√</div>
+                            
                         </td>
                         <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed, but was reverted.">⟳</div>
                             
                         </td>
 
@@ -8448,7 +8450,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>    }</pre>
+                                    <pre class="row-line-covered">        int256 mul = x.wadMul(x.wadMul(x));</pre>
                             
                         </td>
                     </tr>
@@ -8494,7 +8496,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>    function testSquareOfABinomial(int256 x, int256 y) public {</pre>
+                                    <pre>        //verify that the difference between pow and mul is less than 0.00001%</pre>
                             
                         </td>
                     </tr>
@@ -8503,6 +8505,171 @@
                     <tr>
                         
                         <td class="row-line-number unselectable">109</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed without reverting.">√</div>
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre class="row-line-covered">        assertLte(abs(pow - mul), pow / 1e7, &#34;WadPow should be equal to the sucessive multiplication&#34;);</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">110</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre></pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">111</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre>        // verify that x ** 1 = x, tolerance of 0.00001%</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">112</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed without reverting.">√</div>
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre class="row-line-covered">        assertLte(x.wadPow(1e18) - x, x / 1e7, &#34;WadPow should be identity&#34;);</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">113</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre>    }</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">114</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre></pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">115</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre>    function testSquareOfABinomial(int256 x, int256 y) public {</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">116</td>
 
                         
                         <td class="row-reverted-status unselectable">
@@ -8525,7 +8692,7 @@
                     
                     <tr>
                         
-                        <td class="row-line-number unselectable">110</td>
+                        <td class="row-line-number unselectable">117</td>
 
                         
                         <td class="row-reverted-status unselectable">
@@ -8552,7 +8719,7 @@
                     
                     <tr>
                         
-                        <td class="row-line-number unselectable">111</td>
+                        <td class="row-line-number unselectable">118</td>
 
                         
                         <td class="row-reverted-status unselectable">
@@ -8579,7 +8746,7 @@
                     
                     <tr>
                         
-                        <td class="row-line-number unselectable">112</td>
+                        <td class="row-line-number unselectable">119</td>
 
                         
                         <td class="row-reverted-status unselectable">
@@ -8602,7 +8769,7 @@
                     
                     <tr>
                         
-                        <td class="row-line-number unselectable">113</td>
+                        <td class="row-line-number unselectable">120</td>
 
                         
                         <td class="row-reverted-status unselectable">
@@ -8625,7 +8792,7 @@
                     
                     <tr>
                         
-                        <td class="row-line-number unselectable">114</td>
+                        <td class="row-line-number unselectable">121</td>
 
                         
                         <td class="row-reverted-status unselectable">
@@ -8652,7 +8819,7 @@
                     
                     <tr>
                         
-                        <td class="row-line-number unselectable">115</td>
+                        <td class="row-line-number unselectable">122</td>
 
                         
                         <td class="row-reverted-status unselectable">
@@ -8675,7 +8842,7 @@
                     
                     <tr>
                         
-                        <td class="row-line-number unselectable">116</td>
+                        <td class="row-line-number unselectable">123</td>
 
                         
                         <td class="row-reverted-status unselectable">
@@ -8695,171 +8862,6 @@
                         <td class="row-source">
                             
                                     <pre class="row-line-covered">        int256 esb = x.wadPow(2e18) &#43; int256(2e18).wadMul(x.wadMul(y)) &#43; y.wadPow(2e18);</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">117</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre></pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">118</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre>        //verify that the difference between sb and esb is less than 0.00001%</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">119</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                                <div title="The source line executed without reverting.">√</div>
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre class="row-line-covered">        assertLte(abs(sb - esb), sb / 1e7, &#34;Square of a binomial should be equal to its expansion&#34;);</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">120</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre>    }</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">121</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre></pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">122</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre>    function testwadExp(int256 x) public {</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">123</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                                <div title="The source line executed without reverting.">√</div>
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre class="row-line-covered">        x = clampLte(x, -42139678854452767551);</pre>
                             
                         </td>
                     </tr>
@@ -8905,7 +8907,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>        // verify that e ** x is 0 due to contract design</pre>
+                                    <pre>        //verify that the difference between sb and esb is less than 0.00001%</pre>
                             
                         </td>
                     </tr>
@@ -8930,7 +8932,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">        assertEq(x.wadExp(), 0, &#34;WadExp should be zero&#34;);</pre>
+                                    <pre class="row-line-covered">        assertLte(abs(sb - esb), sb / 1e7, &#34;Square of a binomial should be equal to its expansion&#34;);</pre>
                             
                         </td>
                     </tr>
@@ -8999,7 +9001,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>    function testwadLn(int256 x, int256 y) public {</pre>
+                                    <pre>    function testwadExp(int256 x) public {</pre>
                             
                         </td>
                     </tr>
@@ -9008,6 +9010,171 @@
                     <tr>
                         
                         <td class="row-line-number unselectable">130</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed without reverting.">√</div>
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre class="row-line-covered">        x = clampLte(x, -42139678854452767551);</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">131</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre></pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">132</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre>        // verify that e ** x is 0 due to contract design</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">133</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed without reverting.">√</div>
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre class="row-line-covered">        assertEq(x.wadExp(), 0, &#34;WadExp should be zero&#34;);</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">134</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre>    }</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">135</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre></pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">136</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre>    function testwadLn(int256 x, int256 y) public {</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">137</td>
 
                         
                         <td class="row-reverted-status unselectable">
@@ -9034,7 +9201,7 @@
                     
                     <tr>
                         
-                        <td class="row-line-number unselectable">131</td>
+                        <td class="row-line-number unselectable">138</td>
 
                         
                         <td class="row-reverted-status unselectable">
@@ -9054,175 +9221,6 @@
                         <td class="row-source">
                             
                                     <pre class="row-line-covered">        y = clampGt(y, 1e18);</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">132</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre></pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">133</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre>        // verify that ln(x * y) = ln(x) &#43; ln(y)</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">134</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                                <div title="The source line executed without reverting.">√</div>
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                                <div title="The source line executed, but was reverted.">⟳</div>
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre class="row-line-covered">        int256 ln_one = x.wadMul(y).wadLn();</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">135</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                                <div title="The source line executed without reverting.">√</div>
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre class="row-line-covered">        int256 ln_two = x.wadLn() &#43; y.wadLn();</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">136</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre>        // tolerance of 2</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">137</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                                <div title="The source line executed without reverting.">√</div>
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre class="row-line-covered">        assertLte(abs(ln_one - ln_two), 2, &#34;WadLn should be distributive&#34;);</pre>
-                            
-                        </td>
-                    </tr>
-                
-                    
-                    <tr>
-                        
-                        <td class="row-line-number unselectable">138</td>
-
-                        
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-                        <td class="row-reverted-status unselectable">
-                            
-                        </td>
-
-                        
-                        
-                        
-                        <td class="row-source">
-                            
-                                    <pre>    }</pre>
                             
                         </td>
                     </tr>
@@ -9268,7 +9266,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>    //Aux functions</pre>
+                                    <pre>        // verify that ln(x * y) = ln(x) &#43; ln(y)</pre>
                             
                         </td>
                     </tr>
@@ -9295,7 +9293,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">    function abs(int256 x) internal pure returns (int256) {</pre>
+                                    <pre class="row-line-covered">        int256 ln_one = x.wadMul(y).wadLn();</pre>
                             
                         </td>
                     </tr>
@@ -9313,8 +9311,6 @@
                         </td>
                         <td class="row-reverted-status unselectable">
                             
-                                <div title="The source line executed, but was reverted.">⟳</div>
-                            
                         </td>
 
                         
@@ -9322,7 +9318,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">        return x &gt;= 0 ? x : -x;</pre>
+                                    <pre class="row-line-covered">        int256 ln_two = x.wadLn() &#43; y.wadLn();</pre>
                             
                         </td>
                     </tr>
@@ -9345,7 +9341,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre>    }</pre>
+                                    <pre>        // tolerance of 2</pre>
                             
                         </td>
                     </tr>
@@ -9354,6 +9350,173 @@
                     <tr>
                         
                         <td class="row-line-number unselectable">144</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed without reverting.">√</div>
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre class="row-line-covered">        assertLte(abs(ln_one - ln_two), 2, &#34;WadLn should be distributive&#34;);</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">145</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre>    }</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">146</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre></pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">147</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre>    //Aux functions</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">148</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed without reverting.">√</div>
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre class="row-line-covered">    function abs(int256 x) internal pure returns (int256) {</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">149</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                                <div title="The source line executed without reverting.">√</div>
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre class="row-line-covered">        return x &gt;= 0 ? x : -x;</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">150</td>
+
+                        
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+                        <td class="row-reverted-status unselectable">
+                            
+                        </td>
+
+                        
+                        
+                        
+                        <td class="row-source">
+                            
+                                    <pre>    }</pre>
+                            
+                        </td>
+                    </tr>
+                
+                    
+                    <tr>
+                        
+                        <td class="row-line-number unselectable">151</td>
 
                         
                         <td class="row-reverted-status unselectable">
@@ -9376,7 +9539,7 @@
                     
                     <tr>
                         
-                        <td class="row-line-number unselectable">145</td>
+                        <td class="row-line-number unselectable">152</td>
 
                         
                         <td class="row-reverted-status unselectable">
@@ -9408,8 +9571,8 @@
         
         <button class="collapsible">
             
-            <span><progress class="progress-coverage" value="84" max="100" style="accent-color: hsl(84, 100%, 60%)"></progress></span>
-            <span>[84%]</span>
+            <span><progress class="progress-coverage" value="79" max="100" style="accent-color: hsl(79, 100%, 60%)"></progress></span>
+            <span>[79%]</span>
             <span>contracts/helper.sol</span>
         </button>
         <div class="collapsible-container">
@@ -9419,7 +9582,7 @@
             <table>
                 <tr>
                     <th>Lines covered: </th>
-                    <td>85 / 101 (84.2%)</td>
+                    <td>80 / 101 (79.2%)</td>
                 </tr>
             </table>
             <hr />
@@ -12320,8 +12483,6 @@
                         </td>
                         <td class="row-reverted-status unselectable">
                             
-                                <div title="The source line executed, but was reverted.">⟳</div>
-                            
                         </td>
 
                         
@@ -12345,8 +12506,6 @@
                         </td>
                         <td class="row-reverted-status unselectable">
                             
-                                <div title="The source line executed, but was reverted.">⟳</div>
-                            
                         </td>
 
                         
@@ -12354,7 +12513,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">            string memory aStr = PropertiesLibString.toString(a);</pre>
+                                    <pre class="row-line-uncovered">            string memory aStr = PropertiesLibString.toString(a);</pre>
                             
                         </td>
                     </tr>
@@ -12370,8 +12529,6 @@
                         </td>
                         <td class="row-reverted-status unselectable">
                             
-                                <div title="The source line executed, but was reverted.">⟳</div>
-                            
                         </td>
 
                         
@@ -12379,7 +12536,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">            string memory bStr = PropertiesLibString.toString(b);</pre>
+                                    <pre class="row-line-uncovered">            string memory bStr = PropertiesLibString.toString(b);</pre>
                             
                         </td>
                     </tr>
@@ -12395,8 +12552,6 @@
                         </td>
                         <td class="row-reverted-status unselectable">
                             
-                                <div title="The source line executed, but was reverted.">⟳</div>
-                            
                         </td>
 
                         
@@ -12404,7 +12559,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">            bytes memory assertMsg = abi.encodePacked(&#34;Invalid: &#34;, aStr, &#34;&gt;&#34;, bStr, &#34; failed, reason: &#34;, reason);</pre>
+                                    <pre class="row-line-uncovered">            bytes memory assertMsg = abi.encodePacked(&#34;Invalid: &#34;, aStr, &#34;&gt;&#34;, bStr, &#34; failed, reason: &#34;, reason);</pre>
                             
                         </td>
                     </tr>
@@ -12420,8 +12575,6 @@
                         </td>
                         <td class="row-reverted-status unselectable">
                             
-                                <div title="The source line executed, but was reverted.">⟳</div>
-                            
                         </td>
 
                         
@@ -12429,7 +12582,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">            emit AssertLteFail(string(assertMsg));</pre>
+                                    <pre class="row-line-uncovered">            emit AssertLteFail(string(assertMsg));</pre>
                             
                         </td>
                     </tr>
@@ -12445,8 +12598,6 @@
                         </td>
                         <td class="row-reverted-status unselectable">
                             
-                                <div title="The source line executed, but was reverted.">⟳</div>
-                            
                         </td>
 
                         
@@ -12454,7 +12605,7 @@
                         
                         <td class="row-source">
                             
-                                    <pre class="row-line-covered">            assert(false);</pre>
+                                    <pre class="row-line-uncovered">            assert(false);</pre>
                             
                         </td>
                     </tr>
@@ -18448,7 +18599,7 @@
     <center>
         Report generated by medusa
         <br />
-        2023-08-05 15:30:41.299169169 &#43;0000 UTC
+        2023-08-05 20:43:21.444648106 &#43;0000 UTC
         <br />
         <a href="https://github.com/crytic/medusa">github.com/crytic/medusa</a>
     </center>
