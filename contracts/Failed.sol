@@ -15,6 +15,9 @@ contract SignedWadMathTest is PropertiesAsserts {
         int256 mul_one = x.wadMul(x) + x.wadMul(y);
         int256 mul_two = x.wadMul(x + y);
 
+        emit LogInt256("mul_one", mul_one);
+        emit LogInt256("mul_two", mul_two);
+
         //Deal with precision loss, +/- 1 tolerance.
         assertLte(abs(mul_one - mul_two), 1, "WadMul should be distributive");
 
