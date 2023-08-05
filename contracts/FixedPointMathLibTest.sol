@@ -10,50 +10,30 @@ import "./IVM.sol";
 contract FixedPointMathLibTest is PropertiesAsserts {
     IVM vm = IVM(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D);
 
+    uint256 constant WAD = 1e18;
+    uint256 constant ZERO = 0;
+
     using FixedPointMathLib for uint256;
 
-    // The following is an example of invariant
-    // It test that if z = x / y, then z <= x
-    // For any x and y greater than 1 unit
-    function testDivWadDown(uint256 x, uint256 y) public {
-        // We work with a decimals of 18
-        uint256 decimals = 1e18;
-
-        // Ensure x and y are greater  than 1
-        x = clampGte(x, decimals);
-        y = clampGte(y, decimals);
-
-        // compute z = x / y
-        uint256 z = FixedPointMathLib.divWadDown(x, y);
-
-        // Ensure that z <= x
-        assertLte(z, x, "Z should be less or equal to X");
-
+    function test_divWad_properties(uint256 a) public {
         // Ensure that x / 1 = x
-        assertEq(x.mulDivDown(1e18, decimals), x, "X / 1 should be X");
+        assertEq(a.divWadDown(WAD), a, "a / 1 should be a");
+        assertEq(a.divWadUp(WAD), a, "a / 1 should be a");
 
         // Ensure that x / x = 1
-        assertEq(x.mulDivDown(x, decimals), 1e18, "X / X should be 1");
+        assertEq(a.divWadDown(a), WAD, "a / a should be 1");
+        assertEq(a.divWadUp(a), WAD, "a / a should be 1");
+
+        // Ensure that 0 / x = 0
+        assertEq(ZERO.divWadDown(a), 0, "0 / a should be 0");
+        assertEq(ZERO.divWadUp(a), 0, "0 / a should be 0");
     }
 
-    function testmulDivUp(uint256 x, uint256 y) public {
-        // We work with a decimals of 18
-        uint256 decimals = 1e18;
+    function test_divWadUp_gte_divWadDown(uint256 a, uint256 b) public {
+        assertGte(a.divWadUp(b), a.divWadDown(b), "a / b should be >= a / b");
+    }
 
-        // Ensure x and y are geater than 1
-        x = clampGte(x, decimals);
-        y = clampGte(y, decimals);
-
-        // compute z = x / y
-        uint256 z = x.mulDivUp(y, decimals);
-
-        // Ensure that z <= x
-        assertLte(z, x, "Z should be less or equal to X");
-
-        // Ensure that x / 1 = x
-        assertEq(x.mulDivUp(1e18, decimals), x, "X / 1 should be X");
-
-        // Ensure that x / x = 1
-        assertEq(x.mulDivUp(x, decimals), 1e18, "X / X should be 1");
+    function test_divWadDown_equivalentFractions(uint256 a, uint256 b) public {
+        assertEq(a.divWadDown(b), (a * 2).divWadDown(b * 2), "a / b should be (a * WAD) / (b * WAD)");
     }
 }

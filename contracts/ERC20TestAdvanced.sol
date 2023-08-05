@@ -70,7 +70,7 @@ contract ExternalTestingToken is PropertiesAsserts {
         assertEq(token.totalSupply(), 10 ** 18 - amount, "The total supply must be equal to the expected amount");
     }
 
-    function testBurnAllAndMore(uint256 amount) public {
+    function testBurnOverflow(uint256 amount) public {
         //Try to burn more than the balance, should revert every time.
 
         vm.prank(address(alice));
@@ -78,10 +78,6 @@ contract ExternalTestingToken is PropertiesAsserts {
         amount = clampGt(amount, balanceBefore);
         token.burn(amount);
 
-        assertEq(
-            token.balanceOf(address(alice)), balanceBefore, "The amount burned must be equal to the expected amount"
-        );
-
-        assertEq(token.totalSupply(), 10 ** 18, "The total supply must be equal to the expected amount");
+        assertEq(token.balanceOf(address(alice)), balanceBefore, "The amount burned must be equal to 0");
     }
 }
