@@ -3,10 +3,13 @@ pragma solidity 0.8.19;
 
 import {FixedPointMathLib} from "./FixedPointMathLib.sol";
 import "./helper.sol";
+import "./IVM.sol";
 
 // Run with medusa fuzz --target contracts/FixedPointMathLibTest.sol --deployment-order FixedPointMathLibTest
 
 contract FixedPointMathLibTest is PropertiesAsserts {
+    IVM vm = IVM(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D);
+
     using FixedPointMathLib for uint256;
 
     // The following is an example of invariant
