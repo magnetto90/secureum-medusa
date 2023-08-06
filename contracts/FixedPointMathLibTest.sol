@@ -15,6 +15,10 @@ contract FixedPointMathLibTest is PropertiesAsserts {
 
     using FixedPointMathLib for uint256;
 
+    /*//////////////////////////////////////////////////////////////
+                    SIMPLIFIED FIXED POINT OPERATIONS
+    //////////////////////////////////////////////////////////////*/
+
     function test_divWad_properties(uint256 a) public {
         // Ensure that x / 1 = x
         assertEq(a.divWadDown(WAD), a, "a / 1 should be a");
@@ -38,7 +42,7 @@ contract FixedPointMathLibTest is PropertiesAsserts {
         assertEq(a.divWadUp(b), (a * 2).divWadUp(b * 2), "a / b should be (a * WAD) / (b * WAD)");
     }
 
-    function test_divWad_Inverse(uint256 a, uint256 b) public {
+    function test_divWad_reverse(uint256 a, uint256 b) public {
         //Verify that a = bq
         b = clampGte(b, 1e18);
         a = clampGte(a, b); //To avoid q = 0
@@ -68,6 +72,123 @@ contract FixedPointMathLibTest is PropertiesAsserts {
             assertLte(q1 - q2, tolerance, "q1 should be equal to q2, more or less");
         } else {
             assertLte(q2 - q1, tolerance, "q1 should be equal to q2, more or less");
+        }
+    }
+
+    function test_mulWadDown(uint256 x, uint256 y) public {
+        uint256 mul_one = x.mulWadDown(x) + x.mulWadDown(y);
+        uint256 mul_two = x.mulWadDown(x + y);
+
+        //Deal with precision loss, +/- 1 tolerance.
+        if (mul_one > mul_two) {
+            assertLte(mul_one - mul_two, 1, "WadMul should be distributive");
+        } else {
+            assertLte(mul_two - mul_one, 1, "WadMul should be distributive");
+        }
+    }
+
+    function test_mulWadUp(uint256 x, uint256 y) public {
+        //Distributive property
+        uint256 mul_one = x.mulWadUp(x) + x.mulWadUp(y);
+        uint256 mul_two = x.mulWadUp(x + y);
+
+        //Deal with precision loss, +/- 1 tolerance.
+        if (mul_one > mul_two) {
+            assertLte(mul_one - mul_two, 1, "WadMul should be distributive");
+        } else {
+            assertLte(mul_two - mul_one, 1, "WadMul should be distributive");
+        }
+
+        //Commutative property
+        mul_one = x.mulWadUp(y);
+        mul_two = y.mulWadUp(x);
+
+        //Deal with precision loss, +/- 1 tolerance.
+        if (mul_one > mul_two) {
+            assertLte(mul_one - mul_two, 1, "WadMul should be commutative");
+        } else {
+            assertLte(mul_two - mul_one, 1, "WadMul should be commutative");
+        }
+
+        //Associative property
+        mul_one = x.mulWadUp(y).mulWadUp(x);
+        mul_two = x.mulWadUp(y.mulWadUp(x));
+
+        //Deal with precision loss, +/- 1 tolerance.
+        if (mul_one > mul_two) {
+            assertLte(mul_one - mul_two, 1, "WadMul should be associative");
+        } else {
+            assertLte(mul_two - mul_one, 1, "WadMul should be associative");
+        }
+    }
+
+    /*//////////////////////////////////////////////////////////////
+                    LOW LEVEL FIXED POINT OPERATIONS
+    //////////////////////////////////////////////////////////////*/
+
+    function test_mulDivDown(uint256 x, uint256 y, uint256 denominator) public {
+        //Commutative property
+        uint256 mul_one = x.mulDivDown(y, denominator);
+        uint256 mul_two = y.mulDivDown(x, denominator);
+
+        //Deal with precision loss, +/- 1 tolerance.
+        if (mul_one > mul_two) {
+            assertLte(mul_one - mul_two, 1, "mulDivDown should be commutative");
+        } else {
+            assertLte(mul_two - mul_one, 1, "mulDivDown should be commutative");
+        }
+
+        //Distributive property
+        mul_one = x.mulDivDown(y, denominator) + x.mulDivDown(y, denominator);
+        mul_two = x.mulDivDown(y + y, denominator);
+
+        //Deal with precision loss, +/- 1 tolerance.
+        if (mul_one > mul_two) {
+            assertLte(mul_one - mul_two, 1, "mulDivDown should be distributive");
+        } else {
+            assertLte(mul_two - mul_one, 1, "mulDivDown should be distributive");
+        }
+    }
+
+    function test_mulDivUp(uint256 x, uint256 y, uint256 denominator) public {
+        //Commutative property
+        uint256 mul_one = x.mulDivUp(y, denominator);
+        uint256 mul_two = y.mulDivUp(x, denominator);
+
+        //Deal with precision loss, +/- 1 tolerance.
+        if (mul_one > mul_two) {
+            assertLte(mul_one - mul_two, 1, "mulDivUp should be commutative");
+        } else {
+            assertLte(mul_two - mul_one, 1, "mulDivUp should be commutative");
+        }
+
+        //Distributive property
+        mul_one = x.mulDivUp(y, denominator) + x.mulDivUp(y, denominator);
+        mul_two = x.mulDivUp(y + y, denominator);
+
+        //Deal with precision loss, +/- 1 tolerance.
+        if (mul_one > mul_two) {
+            assertLte(mul_one - mul_two, 1, "mulDivUp should be distributive");
+        } else {
+            assertLte(mul_two - mul_one, 1, "mulDivUp should be distributive");
+        }
+    }
+
+    function test_rpow(uint256 x, uint256 n, uint256 scalar) public {
+        //Verify that x^n = x*x*x*...*x when x != 0
+        n = clampGt(n, 0);
+        scalar = clampLte(scalar, 1e18);
+        uint256 rpow = x.rpow(n, scalar);
+        uint256 pow = x;
+        for (uint256 i = 1; i < n; i++) {
+            pow = pow.mulWadDown(x);
+        }
+
+        //Deal with precision loss, +/- 0.01% tolerance.
+        if (rpow > pow) {
+            assertLte(rpow - pow, rpow / 100, "rpow should be equal to pow, more or less");
+        } else {
+            assertLte(pow - rpow, pow / 100, "rpow should be equal to pow, more or less");
         }
     }
 }
