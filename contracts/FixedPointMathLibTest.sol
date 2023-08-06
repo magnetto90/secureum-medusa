@@ -62,7 +62,7 @@ contract FixedPointMathLibTest is PropertiesAsserts {
         uint256 pbc = b.mulWadDown(c);
         uint256 q2 = pad.divWadDown(pbc);
 
-        uint256 tolerance = q1 / 1e18;
+        uint256 tolerance = q1 / 1e18 == 0 ? 1 : q1 / 1e18;
 
         if (q1 > q2) {
             assertLte(q1 - q2, tolerance, "q1 should be equal to q2, more or less");
