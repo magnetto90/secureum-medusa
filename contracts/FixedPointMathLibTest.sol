@@ -33,7 +33,41 @@ contract FixedPointMathLibTest is PropertiesAsserts {
         assertGte(a.divWadUp(b), a.divWadDown(b), "a / b should be >= a / b");
     }
 
-    function test_divWadDown_equivalentFractions(uint256 a, uint256 b) public {
+    function test_divWad_equivalentFractions(uint256 a, uint256 b) public {
         assertEq(a.divWadDown(b), (a * 2).divWadDown(b * 2), "a / b should be (a * WAD) / (b * WAD)");
+        assertEq(a.divWadUp(b), (a * 2).divWadUp(b * 2), "a / b should be (a * WAD) / (b * WAD)");
+    }
+
+    function test_divWad_Inverse(uint256 a, uint256 b) public {
+        //Verify that a = bq
+        b = clampGte(b, 1e18);
+        a = clampGte(a, b); //To avoid q = 0
+        uint256 q = a.divWadDown(b);
+        //Verify that the precision loss is less than 0.0001%
+        assertLte(a - b.mulWadDown(q), a / 10000, "a should be b * q");
+    }
+
+    function test_rationalNumbersDivition(uint256 a, uint256 b, uint256 c, uint256 d) public {
+        //Verify that (a/b)/(c/d) = (a*d)/(b*c)
+        b = clampGte(b, 1e18);
+        d = clampGte(d, 1e18);
+        a = clampGte(a, b); //To avoid quotient = 0
+        c = clampGte(c, d); //To avoid quotient = 0
+
+        uint256 qab = a.divWadDown(b);
+        uint256 qcd = c.divWadDown(d);
+        uint256 q1 = qab.divWadDown(qcd);
+
+        uint256 pad = a.mulWadDown(d);
+        uint256 pbc = b.mulWadDown(c);
+        uint256 q2 = pad.divWadDown(pbc);
+
+        uint256 tolerance = q1 / 1e18;
+
+        if (q1 > q2) {
+            assertLte(q1 - q2, tolerance, "q1 should be equal to q2, more or less");
+        } else {
+            assertLte(q2 - q1, tolerance, "q1 should be equal to q2, more or less");
+        }
     }
 }
