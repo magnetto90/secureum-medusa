@@ -174,21 +174,46 @@ contract FixedPointMathLibTest is PropertiesAsserts {
         }
     }
 
-    function test_rpow(uint256 x, uint256 n, uint256 scalar) public {
-        //Verify that x^n = x*x*x*...*x when x != 0
-        n = clampGt(n, 0);
-        scalar = clampLte(scalar, 1e18);
-        uint256 rpow = x.rpow(n, scalar);
-        uint256 pow = x;
-        for (uint256 i = 1; i < n; i++) {
-            pow = pow.mulWadDown(x);
-        }
+    function test_rpow(uint256 x, uint256 scalar) public {
+        //Verify that x^2 = x*x when n != 0
+        uint256 rpow = x.rpow(2, scalar);
+        uint256 mul = x.mulDivDown(x, scalar);
 
-        //Deal with precision loss, +/- 0.01% tolerance.
-        if (rpow > pow) {
-            assertLte(rpow - pow, rpow / 100, "rpow should be equal to pow, more or less");
+        if (rpow > mul) {
+            assertLte(rpow - mul, 1, "x^2 should be equal to x*x, more or less");
         } else {
-            assertLte(pow - rpow, pow / 100, "rpow should be equal to pow, more or less");
+            assertLte(mul - rpow, 1, "x^2 should be equal to x*x, more or less");
+        }
+    }
+
+    function test_rpow_xis0(uint256 n, uint256 scalar) public {
+        //Verify that 0^2 = 0
+        n = clampGt(n, 0);
+        uint256 x = 0;
+        uint256 rpow = x.rpow(n, scalar);
+
+        assertEq(rpow, 0, "0^n should be equal to 0");
+    }
+
+    function test_rpow_nis0(uint256 x, uint256 scalar) public {
+        //Verify that 0^2 = 0
+        x = clampGt(x, 0);
+        uint256 n = 0;
+        uint256 rpow = x.rpow(n, scalar);
+
+        assertEq(rpow, 1, "x^0 should be equal to 1");
+    }
+
+    function test_rpow_nplusm(uint256 x, uint256 n, uint256 m, uint256 scalar) public {
+        x = clampGt(x, 0);
+        uint256 rpow1 = x.rpow(n + m, scalar);
+        uint256 rpow2 = (x.rpow(n, scalar)).mulDivUp(x.rpow(m, scalar), scalar);
+
+        //Deal with precision loss, +/- 10% tolerance.
+        if (rpow1 > rpow2) {
+            assertLte(rpow1 - rpow2, (rpow1 / 10) + 1, "x^(n+m) should be equal to x^n * x^m");
+        } else {
+            assertLte(rpow2 - rpow1, (rpow1 / 10) + 1, "x^(n+m) should be equal to x^n * x^m");
         }
     }
 }
