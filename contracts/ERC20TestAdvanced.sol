@@ -34,7 +34,7 @@ contract ExternalTestingToken is PropertiesAsserts {
         token.transfer(address(alice), 10 ** 18);
         // Approve all the token from Alice to ExternalTestingToken
         vm.prank(address(alice));
-        token.approve(address(this), 10 ** 18);
+        token.approve(address(this), type(uint256).max);
     }
 
     // The following test a transfer from
@@ -83,5 +83,20 @@ contract ExternalTestingToken is PropertiesAsserts {
 
     function testRandomBalance(address random) public {
         assertLte(token.balanceOf(random), 1e18, "No one should have more than 1e18 tokens");
+    }
+
+    function testTransferFromSelf(uint256 amount) public {
+        // Ensure amount is less or equal to alice's balance
+        amount = clampLte(amount, token.balanceOf(address(alice)));
+
+        uint256 balanceBefore = token.balanceOf(address(alice));
+
+        vm.prank(address(alice));
+        token.approve(address(alice), amount);
+        token.transferFrom(address(alice), address(alice), amount);
+
+        assertEq(
+            token.balanceOf(address(alice)), balanceBefore, "The current balance must be equal to the previous balance"
+        );
     }
 }
