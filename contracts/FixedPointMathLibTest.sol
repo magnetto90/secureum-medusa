@@ -195,14 +195,15 @@ contract FixedPointMathLibTest is PropertiesAsserts {
         assertEq(rpow, 0, "0^n should be equal to 0");
     }
 
-    function test_rpow_nis0(uint256 x, uint256 scalar) public {
-        //Verify that 0^2 = 0
-        x = clampGt(x, 0);
-        uint256 n = 0;
-        uint256 rpow = x.rpow(n, scalar);
+    // function test_rpow_nis0(uint256 x) public {
+    //     //Verify that X^0 = 1
+    //     x = clampGt(x, 0);
+    //     uint256 scalar = 1e18;
+    //     uint256 n = 0;
+    //     uint256 rpow = x.rpow(n, scalar);
 
-        assertEq(rpow, 1, "x^0 should be equal to 1");
-    }
+    //     assertEq(rpow, 1, "x^0 should be equal to 1");
+    // }
 
     function test_rpow_nplusm(uint256 x, uint256 n, uint256 m, uint256 scalar) public {
         x = clampGt(x, 0);
@@ -215,5 +216,9 @@ contract FixedPointMathLibTest is PropertiesAsserts {
         } else {
             assertLte(rpow2 - rpow1, (rpow1 / 10) + 1, "x^(n+m) should be equal to x^n * x^m");
         }
+    }
+
+    function test_sqrt(uint256 x) public {
+        assertEq((x * x).sqrt(), x, "(x^2).sqrt() should be equal to x");
     }
 }

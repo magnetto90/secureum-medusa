@@ -80,4 +80,8 @@ contract ExternalTestingToken is PropertiesAsserts {
 
         assertEq(token.balanceOf(address(alice)), balanceBefore, "The amount burned must be equal to 0");
     }
+
+    function testRandomBalance(address random) public {
+        assertLte(token.balanceOf(random), 1e18, "No one should have more than 1e18 tokens");
+    }
 }
